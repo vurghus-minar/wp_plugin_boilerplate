@@ -1,0 +1,13 @@
+{
+    "name": "am/boilerplate_plugin",
+    "description": "WordPress plugin boilerplate",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vurghus Minar",
+            "email": "vurghus.minar@outlook.com"
+        }
+    ],
+    "require": {}
+}

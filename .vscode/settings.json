@@ -1,0 +1,43 @@
+{
+    "phpcs.standard": "Wordpress",
+    "phpcs.ignorePatterns": [
+        // "*/ignored-file.php",
+        // "*/ignored-dir/*"
+    ],
+    "saveAndRunReg": {
+        "commands": [
+            {
+                "match": ".php$",
+                "cmd": "phpcbf --standard=Wordpress .",
+                "useShortcut": false,
+                "silent": false
+            }
+        ]
+    },
+    "todo-tree.tags": [
+        "TODO",
+        "FIXME",
+        "DONE"
+    ],
+    "todo-tree.customHighlight": {
+        "TODO": {
+            "icon": "pencil",
+            "iconColour": "white",
+            "background": "white",
+            "foreground": "black"
+        },
+        "DONE": {
+            "iconColour": "green",
+            "background": "green",
+            "foreground": "white",
+            "opacity": 100,
+        },
+        "FIXME": {
+            "icon": "alert",
+            "iconColour": "yellow",
+            "background": "yellow",
+            "foreground": "black",
+            "opacity": 100,
+        }
+    }
+}
