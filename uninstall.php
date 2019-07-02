@@ -16,3 +16,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 // phpcs:disable
 error_log( 'Uninstall Working!' );
 // phpcs:enable
+
+delete_option( 'am_plugin_example_settings' );

@@ -32,6 +32,7 @@ class Activate_Plugin {
 		error_log( print_r( $config, TRUE ) );
 		error_log( 'Activation Hook Working!' );
 		// phpcs:enable
+		\AM\Settings\Example_Settings::create_options();
 	}
 
 }

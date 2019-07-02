@@ -71,9 +71,9 @@ class Config {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $override_dir   The stylesheet directory folder path that overrides public script and style.
+	 * @var      string    $override_url   The stylesheet directory folder path that overrides public script and style.
 	 */
-	private $override_dir;
+	private $override_url;
 
 	/**
 	 * The Rest API namespace.
@@ -97,7 +97,7 @@ class Config {
 		$this->url             = $config_array['url'];
 		$this->version         = $config_array['version'];
 		$this->plugin_dir      = $config_array['plugin_dir'];
-		$this->override_dir    = get_stylesheet_directory() . "/config-$this->slug/";
+		$this->override_url    = get_stylesheet_directory_uri() . "/config-$this->slug/";
 		$this->api_namespace   = $this->slug . '/v' . $this->version;
 	}
 
@@ -114,19 +114,21 @@ class Config {
 			'plugin_ver'      => $this->version,
 			'plugin_basename' => $this->plugin_basename,
 			'plugin_url'      => $this->url,
-			'override_dir'    => $this->override_dir,
-			'language_dir'    => $this->plugin_dir . '/languages',
+			'override_url'    => $this->override_url,
+			'language_dir'    => $this->plugin_dir . 'languages',
 			'text_domain'     => $this->slug,
 			'api_namespace'   => $this->api_namespace,
-			'backend_dir'     => (object) [
-				'style'  => $this->plugin_dir . 'assets/css/',
-				'script' => $this->plugin_dir . 'assets/js/',
+			'assets_dir'      => $this->plugin_dir . 'assets',
+			'assets_url'      => $this->url . '/assets/',
+			'backend_url'     => (object) [
+				'style'  => $this->url . '/assets/css/',
+				'script' => $this->url . '/assets/js/',
 			],
-			'frontend_dir'    => (object) [
-				'style'           => $this->plugin_dir . 'assets/public/css/',
-				'script'          => $this->plugin_dir . 'assets/public/js/',
-				'style_override'  => $this->override_dir . 'assets/public/css/',
-				'script_override' => $this->override_dir . 'assets/public/js/',
+			'frontend_url'    => (object) [
+				'style'           => $this->url . '/assets/public/css/',
+				'script'          => $this->url . '/assets/public/js/',
+				'style_override'  => $this->override_url . '/css/',
+				'script_override' => $this->override_url . '/js/',
 			],
 		];
 

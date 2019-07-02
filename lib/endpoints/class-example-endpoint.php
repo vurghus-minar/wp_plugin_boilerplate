@@ -86,6 +86,27 @@ class  Example_Endpoint extends AbstractEndpoint {
 				'permission_callback' => array( $this, 'is_authorized' ),
 			)
 		);
+
+		register_rest_route(
+			$this->config->api_namespace,
+			$this->endpoint,
+			array(
+				'methods'             => $this->creatable,
+				'callback'            => array( $this, 'update_example_settings' ),
+				'permission_callback' => array( $this, 'is_authorized' ),
+			)
+		);
+
+		register_rest_route(
+			$this->config->api_namespace,
+			$this->endpoint,
+			array(
+				'methods'             => $this->editable,
+				'callback'            => array( $this, 'update_example_settings' ),
+				'permission_callback' => array( $this, 'is_authorized' ),
+			)
+		);
+
 	}
 
 
@@ -96,18 +117,61 @@ class  Example_Endpoint extends AbstractEndpoint {
 	 * @access   public
 	 **/
 	public function get_example_settings() {
+		$option = get_option( 'am_plugin_example_settings' );
 
+		if ( ! $option ) {
+			return new \WP_REST_Response(
+				array(
+					'success' => true,
+					'value'   => '',
+				),
+				200
+			);
+		}
+		return new \WP_REST_Response(
+			array(
+				'success' => true,
+				'value'   => $option,
+			),
+			200
+		);
+	}
+
+	/**
+	 * Get example settings callback
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @param    object $request    The request object.
+	 **/
+	public function update_example_settings( $request ) {
+
+		$options = array(
+			'bla' => $request->get_param( 'bla' ),
+			'aha' => $request->get_param( 'aha' ),
+			'zaz' => $request->get_param( 'zaz' ),
+		);
+
+		$options_updated = update_option( 'am_plugin_example_settings', $options );
+
+		return new \WP_REST_Response(
+			array(
+				'success' => $options_updated,
+				'value'   => $options,
+			),
+			200
+		);
 	}
 
 	/**
 	 * Checks if user has permission to access endpoint
 	 *
 	 * @since    1.0.0
-	 * @access   private
+	 * @access   public
 	 **/
-	private function is_authorized() {
+	public function is_authorized() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new \WP_Error( 'rest_forbidden', esc_html__( 'My name\'s Chow! Chow Mein!', $this->config->text_domain ), array( 'status' => 401 ) );
+			return new \WP_Error( 'rest_forbidden', esc_html__( 'Operation is forbidden! Now spank me!', 'am-plugin-boilerplate' ), array( 'status' => 401 ) );
 		}
 
 		return true;

@@ -9,8 +9,6 @@
 
 namespace AM;
 
-use \AM\Settings\Example_Settings as Example_Settings;
-
 /**
  * Prevent direct access to file.
  */
@@ -45,7 +43,8 @@ class Plugin extends Base_Plugin {
 
 		// DONE Initialize settings pages.
 		$this->add_plugin_settings_pages( $config );
-		// TODO Initialize endpoints.
+		// DONE Initialize endpoints.
+		$this->register_api_routes( $config );
 		// TODO Add action hooks.
 		// TODO Add filters.
 	}
@@ -112,6 +111,17 @@ class Plugin extends Base_Plugin {
 	 */
 	public function add_plugin_settings_pages( Config $config ) {
 		\AM\Settings\Example_Settings::init( $config );
+	}
+
+	/**
+	 * Registers all of plugin's API routes
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @param    Config $config    Config object.
+	 */
+	public function register_api_routes( Config $config ) {
+		\AM\Endpoint\Example_Endpoint::init( $config );
 	}
 
 }

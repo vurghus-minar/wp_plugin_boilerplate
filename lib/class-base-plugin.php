@@ -50,7 +50,7 @@ class Base_Plugin {
 	 * @access    protected
 	 */
 	protected function assets_override_directory_exists() {
-		if ( file_exists( $this->config->override_dir ) ) {
+		if ( file_exists( get_stylesheet_directory() . "/config-$this->config->slug/" ) ) {
 			return true;
 		} else {
 			return false;
@@ -68,7 +68,7 @@ class Base_Plugin {
 		load_plugin_textdomain(
 			$this->config->text_domain,
 			false,
-			$this->config->language
+			$this->config->language_dir
 		);
 
 	}

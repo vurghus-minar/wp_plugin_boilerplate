@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Plugin Name: AM_Boilerplate_Plugin
+ * Plugin Name: AM Boilerplate Plugin
  * Plugin URI:  https://github.com/vurghus-minar
  * Description: WordPress plugin boilerplate
  * Version:     1.0.0

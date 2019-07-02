@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DEST=/c/xampp/htdocs/php/wordpress/dev/wp-content/plugins/am-boilerplate-plugin
+
+rm -rf "$DEST" && mkdir -p "$DEST" &&cp -r * "$DEST"
+
+echo ......................
+echo ......................
+echo Files copied to "$DEST"

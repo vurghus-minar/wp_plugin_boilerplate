@@ -33,6 +33,7 @@ class Deactivate_Plugin {
 		error_log( print_r( $config, TRUE ) );
 		error_log('Deactivation Hook Working!' );
 		// phpcs:enable
+		delete_option( 'am_plugin_example_settings' );
 	}
 
 }
